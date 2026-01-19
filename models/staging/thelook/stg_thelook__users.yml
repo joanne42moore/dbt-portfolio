@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: stg_thelook__users
+    description: "Staging table for TheLook users/customers. One row per user."
+    columns:
+      - name: user_id
+        description: "Primary key for users"
+        tests:
+          - unique
+          - not_null
+      - name: email
+        description: "User email address"
+      - name: first_name
+        description: "User's first name"
+      - name: last_name
+        description: "User's last name"
+      - name: age
+        description: "User's age in years"
+      - name: gender
+        description: "User's gender"
+      - name: state
+        description: "US state (or equivalent region)"
+      - name: country
+        description: "User's country"
+      - name: created_at
+        description: "Timestamp when user account was created"
+      - name: geography_point
+        description: "User location as a GEOGRAPHY point (derived from latitude/longitude)"
