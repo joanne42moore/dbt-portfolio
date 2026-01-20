@@ -21,7 +21,7 @@ renamed as (
 
         -- Order item attributes
         status,
-        sale_price,
+        round(cast(sale_price as numeric), 2) as sale_price, -- cast as numeric to prevent floating point errors
 
         -- Timestamps
         created_at,

@@ -24,8 +24,8 @@ renamed as (
         sku,
     
         -- Pricing
-        cost,
-        retail_price
+        round(cast(cost as numeric), 2) as cost, -- cast as numeric to prevent floating point errors
+        round(cast(retail_price as numeric), 2) as retail_price -- cast as numeric to prevent floating point errors
 
     from source
 

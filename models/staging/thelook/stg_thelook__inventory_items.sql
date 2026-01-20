@@ -12,7 +12,7 @@ renamed as (
         product_distribution_center_id,
         
         -- Inventory item attributes
-        cost,
+        round(cast(cost as numeric), 2) as cost, -- cast as numeric to prevent floating point errors
         
         -- Product attributes (denormalized from products table)
         product_name,
@@ -20,7 +20,7 @@ renamed as (
         product_category,
         product_department,
         product_sku,
-        product_retail_price,
+        round(cast(product_retail_price as numeric), 2) as product_retail_price, -- cast as numeric to prevent floating point errors
         
         -- Timestamps
         created_at,
