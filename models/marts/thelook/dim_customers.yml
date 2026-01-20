@@ -9,7 +9,12 @@ models:
         tests:
           - unique
           - not_null
-
+        config:
+          meta:
+            metrics:
+              total_customers:
+                type: count_distinct
+          
       - name: country
         description: "Customer country from first order"
 
@@ -34,9 +39,21 @@ models:
         description: "Total revenue from customer across all orders"
         tests:
           - not_null
+        config:
+          meta:
+            metrics:
+              total_revenue:
+                type: sum
+              avg_customer_ltv:
+                type: average
 
       - name: avg_order_value
         description: "Average order value across all customer orders"
+        config:
+          meta:
+            metrics:
+              avg_orders_per_customer:
+                type: average
 
       - name: first_order_at
         description: "Timestamp of customer's first order"
