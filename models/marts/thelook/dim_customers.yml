@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Customer dimension with attributes from first order and lifetime value metrics"
+    columns:
+      - name: user_id
+        description: "Primary key - unique customer identifier"
+        tests:
+          - unique
+          - not_null
+
+      - name: country
+        description: "Customer country from first order"
+
+      - name: state
+        description: "Customer state from first order"
+
+      - name: city
+        description: "Customer city from first order"
+
+      - name: traffic_source
+        description: "Acquisition channel from first order"
+
+      - name: age_cohort
+        description: "Age band at time of first order (e.g., 25-34, 35-44)"
+
+      - name: lifetime_order_count
+        description: "Total number of orders placed by customer"
+        tests:
+          - not_null
+
+      - name: lifetime_order_value
+        description: "Total revenue from customer across all orders"
+        tests:
+          - not_null
+
+      - name: avg_order_value
+        description: "Average order value across all customer orders"
+
+      - name: first_order_at
+        description: "Timestamp of customer's first order"
+        tests:
+          - not_null
+
+      - name: most_recent_order_at
+        description: "Timestamp of customer's most recent order"
+        tests:
+          - not_null
