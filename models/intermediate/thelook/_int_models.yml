@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: int_orders_enriched
+    description: "Orders joined with user attributes and order item totals"
+  
+  - name: int_user_order_history
+    description: "User-level order aggregations for LTV calculations"
