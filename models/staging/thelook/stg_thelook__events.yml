@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: stg_thelook__events
+    description: "Staging table for TheLook user behavior events (page views, cart adds, purchases, etc.). One row per event."
+    columns:
+      - name: event_id
+        description: "Primary key for events"
+        tests:
+          - unique
+          - not_null
+      
+      - name: user_id
+        description: "Foreign key to users table"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                field: user_id
+                to: ref('stg_thelook__users')
+      
+      - name: sequence_number
+        description: "Sequence number of event within the user's session"
+      
+      - name: session_id
+        description: "Session identifier grouping related events"
+      
+      - name: event_type
+        description: "Type of event (e.g., page view, add to cart, purchase, cancel)"
+      
+      - name: uri
+        description: "URI/URL of the page where the event occurred"
+      
+      - name: ip_address
+        description: "IP address of the user when event occurred"
+      
+      - name: browser
+        description: "Browser used by the user"
+      
+      - name: traffic_source
+        description: "Traffic source for the session (e.g., organic, paid search, email)"
+      
+      - name: city
+        description: "City where event occurred (based on IP geolocation)"
+      
+      - name: state
+        description: "State where event occurred (based on IP geolocation)"
+      
+      - name: postal_code
+        description: "Postal code where event occurred (based on IP geolocation)"
+      
+      - name: created_at
+        description: "Timestamp when event occurred"

@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: stg_thelook__order_items
+    description: "Staging table for TheLook order line items. One row per product per order."
+    columns:
+      - name: order_item_id
+        description: "Primary key for order items"
+        tests:
+          - unique
+          - not_null
+      
+      - name: order_id
+        description: "Foreign key to orders table"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                field: order_id
+                to: ref('stg_thelook__orders')
+      
+      - name: user_id
+        description: "Foreign key to users table"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                field: user_id
+                to: ref('stg_thelook__users')
+      
+      - name: product_id
+        description: "Foreign key to products table"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                field: product_id
+                to: ref('stg_thelook__products')
+      
+      - name: inventory_item_id
+        description: "Foreign key to inventory items table"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                field: inventory_item_id
+                to: ref('stg_thelook__inventory_items')
+      
+      - name: status
+        description: "Status of the order item (e.g., Processing, Shipped, Complete, Cancelled, Returned)"
+      
+      - name: sale_price
+        description: "Sale price of the item"
+      
+      - name: created_at
+        description: "Timestamp when order item was created"
+      
+      - name: shipped_at
+        description: "Timestamp when item was shipped (null if not yet shipped)"
+      
+      - name: delivered_at
+        description: "Timestamp when item was delivered (null if not yet delivered)"
+      
+      - name: returned_at
+        description: "Timestamp when item was returned (null if not returned)"

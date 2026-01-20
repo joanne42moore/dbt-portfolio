@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: stg_thelook__orders
+    description: "Staging table for TheLook orders. One row per order."
+    columns:
+      - name: order_id
+        description: "Primary key for orders"
+        tests:
+          - unique
+          - not_null
+
+      - name: user_id
+        description: "Foreign key to users table"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                field: user_id
+                to: ref('stg_thelook__users')
+
+      - name: created_at
+        description: "Timestamp when order was created"
+
+      - name: returned_at
+        description: "Timestamp when order was returned (null if not returned)"
+
+      - name: shipped_at
+        description: "Timestamp when order was shipped (null if not yet shipped)"
+
+      - name: delivered_at
+        description: "Timestamp when order was delivered (null if not yet delivered)"
+
+      - name: status
+        description: "Current status of the order (e.g., Pending, Shipped, Complete, Cancelled, Returned)"
+
+      - name: num_of_item
+        description: "Number of items in the order"
+        
+      - name: gender
+        description: "Gender category associated with order (likely from products purchased)"
