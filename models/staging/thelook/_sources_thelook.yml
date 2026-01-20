@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: thelook
+    description: "TheLook ecommerce public dataset from BigQuery"
+    database: bigquery-public-data
+    schema: thelook_ecommerce
+    tables:
+      - name: users
+        description: "Customer/user data"
+      - name: orders
+        description: "Order header information"
+      - name: order_items
+        description: "Line items for each order"
+      - name: products
+        description: "Product catalog"
+      - name: inventory_items
+        description: "Inventory records"
+      - name: distribution_centers
+        description: "Warehouse/distribution center data"
+      - name: events
+        description: "User behavior events (page views, cart adds, etc)"

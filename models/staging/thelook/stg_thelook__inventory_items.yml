@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: stg_thelook__inventory_items
+    description: "Staging table for TheLook inventory items. One row per physical inventory item. Note: This table contains denormalized product attributes."
+    columns:
+      - name: inventory_item_id
+        description: "Primary key for inventory items"
+        tests:
+          - unique
+          - not_null
+      
+      - name: product_id
+        description: "Foreign key to products table"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                field: product_id
+                to: ref('stg_thelook__products')
+      
+      - name: product_distribution_center_id
+        description: "Foreign key to distribution centers table (denormalized from products)"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                field: distribution_center_id
+                to: ref('stg_thelook__distribution_centers')
+      
+      - name: cost
+        description: "Cost of this specific inventory item"
+      
+      - name: product_name
+        description: "Product name (denormalized from products table)"
+      
+      - name: product_brand
+        description: "Product brand (denormalized from products table)"
+      
+      - name: product_category
+        description: "Product category (denormalized from products table)"
+      
+      - name: product_department
+        description: "Product department (denormalized from products table)"
+      
+      - name: product_sku
+        description: "Product SKU (denormalized from products table)"
+      
+      - name: product_retail_price
+        description: "Product retail price (denormalized from products table)"
+      
+      - name: created_at
+        description: "Timestamp when inventory item was created/received"
+      
+      - name: sold_at
+        description: "Timestamp when inventory item was sold (null if not yet sold)"

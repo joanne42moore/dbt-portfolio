@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: stg_thelook__products
+    description: "Staging table for TheLook product catalog. One row per product."
+    columns:
+      - name: product_id
+        description: "Primary key for products"
+        tests:
+          - unique
+          - not_null
+      
+      - name: distribution_center_id
+        description: "Foreign key to distribution centers table"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                field: distribution_center_id
+                to: ref('stg_thelook__distribution_centers')
+      
+      - name: product_name
+        description: "Name of the product"
+      
+      - name: brand
+        description: "Brand name of the product"
+      
+      - name: category
+        description: "Product category (e.g., Jeans, Sweaters, Accessories)"
+      
+      - name: department
+        description: "Department the product belongs to (e.g., Women, Men)"
+      
+      - name: sku
+        description: "Stock Keeping Unit - unique product identifier for inventory"
+      
+      - name: cost
+        description: "Cost to acquire/produce the product"
+      
+      - name: retail_price
+        description: "Standard retail price of the product"

@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_thelook__distribution_centers
+    description: "Staging table for TheLook distribution centers/warehouses. One row per distribution center."
+    columns:
+      - name: distribution_center_id
+        description: "Primary key for distribution centers"
+        tests:
+          - unique
+          - not_null
+      
+      - name: distribution_center_name
+        description: "Name of the distribution center"
+      
+      - name: latitude
+        description: "Latitude coordinate of distribution center location"
+      
+      - name: longitude
+        description: "Longitude coordinate of distribution center location"
+      
+      - name: geography_point
+        description: "Distribution center location as a GEOGRAPHY point (derived from latitude/longitude)"
