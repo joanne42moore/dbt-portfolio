@@ -1,0 +1,22 @@
+version: 2
+
+exposures:
+  - name: customer_ltv_lightdash
+    type: dashboard
+    maturity: low
+    url: https://app.lightdash.cloud
+    description: "Customer lifetime value dashboard in Lightdash"
+    depends_on:
+      - ref('dim_customers')
+    owner:
+      name: Joanne Moore
+
+  # - name: customer_analysis_hex
+  #   type: analysis
+  #   maturity: low
+  #   url: https://app.hex.tech
+  #   description: "Ad-hoc customer analysis in Hex"
+  #   depends_on:
+  #     - ref('dim_customers')
+  #   owner:
+  #     name: Joanne Moore
