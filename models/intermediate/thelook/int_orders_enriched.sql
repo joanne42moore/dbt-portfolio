@@ -20,7 +20,7 @@ select
     users.city,
     users.traffic_source,
     case
-        when users.age < 18 then 'under_18'
+        when users.age < 18 then '<18'
         when users.age < 25 then '18-24'
         when users.age < 35 then '25-34'
         when users.age < 45 then '35-44'

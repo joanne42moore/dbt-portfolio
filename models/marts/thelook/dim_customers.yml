@@ -46,6 +46,7 @@ models:
                 type: sum
               avg_customer_ltv:
                 type: average
+                round: 2
 
       - name: avg_order_value
         description: "Average order value across all customer orders"
@@ -54,6 +55,7 @@ models:
             metrics:
               avg_orders_per_customer:
                 type: average
+                round: 2
 
       - name: first_order_at
         description: "Timestamp of customer's first order"
