@@ -118,7 +118,3 @@ pip install dbt-bigquery
 # Run the project
 dbt build
 ```
-
-## About Me
-
-*[To be added]*
