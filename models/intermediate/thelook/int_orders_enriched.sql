@@ -26,7 +26,7 @@ select
         when users.age < 45 then '35-44'
         when users.age < 55 then '45-54'
         when users.age < 65 then '55-64'
-        else '65_plus'
+        else '65+'
     end as age_cohort, -- Used cohorts to protect PII
     count(order_items.order_item_id) as item_count,
     sum(order_items.sale_price) as order_total
