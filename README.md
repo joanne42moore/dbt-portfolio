@@ -4,9 +4,13 @@ A dbt project demonstrating analytics engineering best practices using BigQuery'
 
 ## Project Overview
 
-This project builds a customer dimension that enables analysis of customer lifetime value across different segments. 
+This project builds a customer dimension that enables analysis of customer lifetime value across different segments.
 
-*[Business questions and dashboard details to be added]*
+**Business questions this enables:**
+- Which acquisition channels generate the most revenue?
+- How does average customer lifetime value vary by age demographic?
+
+The final mart (`dim_customers`) is connected to Lightdash with metrics defined in dbt YAML, demonstrating the full analytics engineering workflow from raw data to BI layer.
 
 ## Architecture
 ```
@@ -71,11 +75,11 @@ Documented both staging and marts with column descriptions and tests to ensure c
 
 ### Lightdash Dashboard
 
-*[Screenshot to be added]*
+![Customer LTV Dashboard](images/Lightdash_TheLook_LTV_dashboard.jpg)
 
 ## DAG
 
-*[Screenshot to be added]*
+![dbt DAG](images/dbt_TheLook_DAG.jpg)
 
 ## Project Structure
 ```
