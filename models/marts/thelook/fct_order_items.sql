@@ -61,5 +61,4 @@ select
 from order_items oi
 left join orders   o on oi.order_id = o.order_id
 left join users    u on oi.user_id = u.user_id
-left join products p on oi.product_id = p.product_id;
-
+left join products p on oi.product_id = p.product_id
