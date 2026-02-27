@@ -19,7 +19,7 @@ select
     users.state,
     users.city,
     users.traffic_source,
-    {{ age_cohort_bucket(users.age) }} as age_cohort, -- Used cohorts to protect PII
+    {{ age_cohort_bucket('users.age') }} as age_cohort, -- Used cohorts to protect PII
     count(order_items.order_item_id) as item_count,
     sum(order_items.sale_price) as order_total
 from orders
@@ -35,3 +35,4 @@ group by
     users.city,
     users.traffic_source,
     age_cohort
+

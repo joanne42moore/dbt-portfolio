@@ -39,7 +39,7 @@ select
     u.country,
     u.state,
     u.city,
-    {{ age_cohort_bucket(u.age) }} as age_cohort,
+    {{ age_cohort_bucket('u.age') }} as age_cohort,
 
     -- Revenue & status
     oi.status as order_item_status,
