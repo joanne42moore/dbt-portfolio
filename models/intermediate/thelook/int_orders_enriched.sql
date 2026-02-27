@@ -19,15 +19,7 @@ select
     users.state,
     users.city,
     users.traffic_source,
-    case
-        when users.age < 18 then '<18'
-        when users.age < 25 then '18-24'
-        when users.age < 35 then '25-34'
-        when users.age < 45 then '35-44'
-        when users.age < 55 then '45-54'
-        when users.age < 65 then '55-64'
-        else '65+'
-    end as age_cohort, -- Used cohorts to protect PII
+    {{ age_cohort_bucket('users.age') }} as age_cohort, -- Used cohorts to protect PII
     count(order_items.order_item_id) as item_count,
     sum(order_items.sale_price) as order_total
 from orders
@@ -43,3 +35,4 @@ group by
     users.city,
     users.traffic_source,
     age_cohort
+
