@@ -1,18 +1,43 @@
-# E-Commerce Customer Analytics (dbt Portfolio Project)
+# E-Commerce Analytics Portfolio | dbt + BigQuery + Looker Studio
 
-A dbt project demonstrating analytics engineering best practices using BigQuery's `thelook_ecommerce` public dataset. This project transforms raw e-commerce data into analysis-ready customer dimensions with lifetime value metrics.
+A dbt project demonstrating both analytics engineering best practices and business-narrative data analysis. Built on BigQuery's thelook_ecommerce public dataset, this project transforms raw e-commerce data into analysis-ready models and answers three core business questions.
 
-## Project Overview
+**Live Dashboard:** [TheLook E-Commerce Analytics](https://lookerstudio.google.com/s/gzko28qHDOo)
 
-This project builds a customer dimension that enables analysis of customer lifetime value across different segments.
+## Business Analyses
 
-**Business questions this enables:**
-- Which acquisition channels generate the most revenue?
-- How does average customer lifetime value vary by age demographic?
+### 1. Customer Acquisition Value
 
-The final mart (`dim_customers`) is connected to Lightdash with metrics defined in dbt YAML, demonstrating the full analytics engineering workflow from raw data to BI layer.
+**Question:** Which acquisition channels generate the most valuable customers?
+
+**Finding:** Across 80,342 customers and $10.9M in revenue, acquisition channels show similar LTV (~$136) and purchase frequency (~1.6 orders per customer), consistent with synthetic data generation patterns. The model is structured to surface channel differentiation in production data.
+
+**Models used:** dim_customers
+
+![Customer Acquisition Dashboard](images/dashboard_acquisition.png)
+
+### 2. Revenue Leakage
+
+**Question:** Where is revenue leaking through returns and cancellations?
+
+**Finding:** $2.7M of $10.9M gross revenue (25%) is lost to returns and cancellations. Outerwear and Jeans carry the highest absolute leakage due to revenue volume, making them priority categories for return reduction initiatives.
+
+**Models used:** fct_order_items
+
+![Revenue Leakage Dashboard](images/dashboard_leakage.png)
+
+### 3. Purchase Funnel
+
+**Question:** How do customers move through the purchase funnel by acquisition channel?
+
+**Finding:** Session-level funnel analysis built on 182,964 sessions across five traffic sources. Note: thelook_ecommerce is a synthetic dataset where every session contains a purchase event, resulting in 100% conversion rates. The model is structured to surface meaningful drop-off in production behavioral data.
+
+**Models used:** int_session_funnel
+
+![Purchase Funnel Dashboard](images/dashboard_funnel.png)
 
 ## Architecture
+
 ```
 Sources (BigQuery public data)
     ↓
@@ -22,7 +47,7 @@ Intermediate (joins, business logic)
     ↓
 Marts (business-facing dimensions)
     ↓
-BI Layer (Lightdash)
+BI Layer (Looker Studio / Lightdash)
 ```
 
 **Why this structure?**
@@ -33,6 +58,7 @@ BI Layer (Lightdash)
 ## Data Model
 
 ### dim_customers
+
 Customer dimension combining demographic attributes with lifetime value metrics.
 
 | Column | Description |
@@ -72,6 +98,8 @@ Documented both staging and marts with column descriptions and tests to ensure c
 - **BigQuery** - data warehouse
 - **GitHub** - version control with feature branch workflow
 - **Lightdash** - BI layer with semantic metrics defined in YAML
+- **Looker Studio** - business intelligence and dashboards
+- **Cursor** - AI-assisted IDE for development
 
 ### Lightdash Dashboard
 
@@ -82,30 +110,44 @@ Documented both staging and marts with column descriptions and tests to ensure c
 ![dbt DAG](images/dbt_TheLook_DAG.jpg)
 
 ## Project Structure
+
 ```
+analyses/
+├── narrative_1_clv_by_channel.sql
+├── narrative_2_revenue_leakage.sql
+└── narrative_3_purchase_funnel.sql
+
+macros/
+├── age_cohort_bucket.sql
+└── ...
+
 models/
 ├── staging/
 │   └── thelook/
-│       ├── _thelook__sources.yml
+│       ├── _sources_thelook.yml
 │       ├── stg_thelook__orders.sql
 │       ├── stg_thelook__orders.yml
 │       ├── stg_thelook__users.sql
 │       ├── stg_thelook__users.yml
 │       └── ...
 ├── intermediate/
-│   ├── _int_models.yml
-│   ├── int_orders_enriched.sql
-│   └── int_user_order_history.sql
+│   └── thelook/
+│       ├── _int_models.yml
+│       ├── int_orders_enriched.sql
+│       ├── int_user_order_history.sql
+│       └── int_session_funnel.sql
 └── marts/
     └── thelook/
         ├── dim_customers.sql
         ├── dim_customers.yml
+        ├── fct_order_items.sql
         └── _marts_exposures.yml
 ```
 
 ## Local Development
 
 This project uses dbt Cloud, but can be run locally with dbt Core:
+
 ```bash
 # Clone the repo
 git clone https://github.com/joanne42moore/dbt-portfolio.git
