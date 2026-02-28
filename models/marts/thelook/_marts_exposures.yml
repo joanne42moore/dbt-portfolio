@@ -11,12 +11,14 @@ exposures:
     owner:
       name: Joanne Moore
 
-  # - name: customer_analysis_hex
-  #   type: analysis
-  #   maturity: low
-  #   url: https://app.hex.tech
-  #   description: "Ad-hoc customer analysis in Hex"
-  #   depends_on:
-  #     - ref('dim_customers')
-  #   owner:
-  #     name: Joanne Moore
+  - name: thelook_ecommerce_looker_studio
+    type: dashboard
+    maturity: low
+    url: https://lookerstudio.google.com/s/gzko28qHDOo
+    description: "TheLook E-Commerce Analytics dashboard in Looker Studio. Supports three business analyses: customer acquisition value, revenue leakage, and purchase funnel."
+    depends_on:
+      - ref('dim_customers')
+      - ref('int_session_funnel')
+      - ref('fct_order_items')
+    owner:
+      name: Joanne Moore
