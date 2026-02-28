@@ -1,0 +1,109 @@
+version: 2
+
+models:
+  - name: fct_order_items
+    description: "Order-item grain fact with product and customer attributes for revenue and return/cancellation analysis. One row per order line item."
+    columns:
+      - name: order_item_id
+        description: "Primary key - unique order line item identifier"
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_thelook__order_items')
+                field: order_item_id
+
+      - name: order_id
+        description: "Foreign key to orders"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_thelook__orders')
+                field: order_id
+
+      - name: user_id
+        description: "Foreign key to users"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_thelook__users')
+                field: user_id
+
+      - name: product_id
+        description: "Foreign key to products"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_thelook__products')
+                field: product_id
+
+      - name: inventory_item_id
+        description: "Foreign key to inventory items"
+
+      - name: order_created_at
+        description: "Timestamp when the order was created"
+
+      - name: item_created_at
+        description: "Timestamp when the order line was created"
+
+      - name: shipped_at
+        description: "When the item was shipped (null if not shipped)"
+
+      - name: delivered_at
+        description: "When the item was delivered (null if not delivered)"
+
+      - name: returned_at
+        description: "When the item was returned (null if not returned)"
+
+      - name: product_category
+        description: "Product category (e.g., Jeans, Outerwear)"
+
+      - name: product_brand
+        description: "Product brand"
+
+      - name: product_department
+        description: "Product department (e.g., Women, Men)"
+
+      - name: traffic_source
+        description: "Acquisition channel for the customer"
+
+      - name: country
+        description: "Customer country"
+
+      - name: state
+        description: "Customer state"
+
+      - name: city
+        description: "Customer city"
+
+      - name: age_cohort
+        description: "Customer age band (e.g., 25-34)"
+
+      - name: order_item_status
+        description: "Raw status of the line item (e.g., Complete, Returned, Cancelled)"
+
+      - name: sale_price
+        description: "Sale price of the item"
+        tests:
+          - not_null
+
+      - name: is_returned
+        description: "1 if item was returned, 0 otherwise"
+
+      - name: is_cancelled
+        description: "1 if item was cancelled, 0 otherwise"
+
+      - name: is_completed
+        description: "1 if item was kept (not returned or cancelled), 0 otherwise"
+
+      - name: revenue_leakage_amount
+        description: "Sale price if returned/cancelled, else 0"
+
+      - name: net_revenue_amount
+        description: "Sale price if completed, else 0"
+        tests:
+          - not_null
