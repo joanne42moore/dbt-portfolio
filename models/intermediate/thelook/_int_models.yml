@@ -6,3 +6,6 @@ models:
   
   - name: int_user_order_history
     description: "User-level order aggregations for LTV calculations"
+
+  - name: int_session_funnel
+    description: "Session-level funnel flags (product view, add to cart, purchase) for behavioral analysis"
