@@ -118,30 +118,38 @@ analyses/
 └── narrative_3_purchase_funnel.sql
 
 macros/
-├── age_cohort_bucket.sql
-└── ...
+└── age_cohort_bucket.sql
 
 models/
 ├── staging/
 │   └── thelook/
 │       ├── _sources_thelook.yml
+│       ├── stg_thelook__distribution_centers.sql
+│       ├── stg_thelook__distribution_centers.yml
+│       ├── stg_thelook__events.sql
+│       ├── stg_thelook__events.yml
+│       ├── stg_thelook__inventory_items.sql
+│       ├── stg_thelook__inventory_items.yml
+│       ├── stg_thelook__order_items.sql
+│       ├── stg_thelook__order_items.yml
 │       ├── stg_thelook__orders.sql
 │       ├── stg_thelook__orders.yml
+│       ├── stg_thelook__products.sql
+│       ├── stg_thelook__products.yml
 │       ├── stg_thelook__users.sql
-│       ├── stg_thelook__users.yml
-│       └── ...
+│       └── stg_thelook__users.yml
 ├── intermediate/
 │   └── thelook/
 │       ├── _int_models.yml
 │       ├── int_orders_enriched.sql
-│       ├── int_user_order_history.sql
-│       └── int_session_funnel.sql
+│       ├── int_session_funnel.sql
+│       └── int_user_order_history.sql
 └── marts/
     └── thelook/
+        ├── _marts_exposures.yml
         ├── dim_customers.sql
         ├── dim_customers.yml
-        ├── fct_order_items.sql
-        └── _marts_exposures.yml
+        └── fct_order_items.sql
 ```
 
 ## Local Development
