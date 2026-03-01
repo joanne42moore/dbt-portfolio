@@ -118,7 +118,8 @@ analyses/
 └── narrative_3_purchase_funnel.sql
 
 macros/
-└── age_cohort_bucket.sql
+├── age_cohort_bucket.sql
+└── cast_dollars.sql
 
 models/
 ├── staging/
@@ -149,7 +150,8 @@ models/
         ├── _marts_exposures.yml
         ├── dim_customers.sql
         ├── dim_customers.yml
-        └── fct_order_items.sql
+        ├── fct_order_items.sql
+        └── fct_order_items.yml
 ```
 
 ## Local Development

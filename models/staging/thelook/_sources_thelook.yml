@@ -19,4 +19,4 @@ sources:
       - name: distribution_centers
         description: "Warehouse/distribution center data"
       - name: events
-        description: "User behavior events (page views, cart adds, etc)"
+        description: "User behavior events (product, cart, purchase, etc.)"
