@@ -21,7 +21,7 @@ renamed as (
 
         -- Order item attributes
         status,
-        round(cast(sale_price as numeric), 2) as sale_price, -- cast as numeric to prevent floating point errors
+        {{ cast_dollars('sale_price') }} as sale_price,
 
         -- Timestamps
         created_at,

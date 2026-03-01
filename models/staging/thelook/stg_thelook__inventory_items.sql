@@ -12,15 +12,15 @@ renamed as (
         product_distribution_center_id,
         
         -- Inventory item attributes
-        round(cast(cost as numeric), 2) as cost, -- cast as numeric to prevent floating point errors
-        
+        {{ cast_dollars('cost') }} as cost,
+
         -- Product attributes (denormalized from products table)
         product_name,
         product_brand,
         product_category,
         product_department,
         product_sku,
-        round(cast(product_retail_price as numeric), 2) as product_retail_price, -- cast as numeric to prevent floating point errors
+        {{ cast_dollars('product_retail_price') }} as product_retail_price,
         
         -- Timestamps
         created_at,
