@@ -24,8 +24,8 @@ renamed as (
         sku,
     
         -- Pricing
-        round(cast(cost as numeric), 2) as cost, -- cast as numeric to prevent floating point errors
-        round(cast(retail_price as numeric), 2) as retail_price -- cast as numeric to prevent floating point errors
+        {{ cast_dollars('cost') }} as cost,
+        {{ cast_dollars('retail_price') }} as retail_price
 
     from source
 

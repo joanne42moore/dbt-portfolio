@@ -33,5 +33,5 @@ select
     cancellation_rate,
     revenue_leakage_rate
 from product_category_stats
-order by gross_revenue desc;
+order by gross_revenue desc
 

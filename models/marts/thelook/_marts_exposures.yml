@@ -10,10 +10,11 @@ exposures:
       - ref('dim_customers')
     owner:
       name: Joanne Moore
+      email: joanne42moore@gmail.com
 
   - name: thelook_ecommerce_looker_studio
     type: dashboard
-    maturity: low
+    maturity: medium
     url: https://lookerstudio.google.com/s/gzko28qHDOo
     description: "TheLook E-Commerce Analytics dashboard in Looker Studio. Supports three business analyses: customer acquisition value, revenue leakage, and purchase funnel."
     depends_on:
@@ -22,3 +23,4 @@ exposures:
       - ref('fct_order_items')
     owner:
       name: Joanne Moore
+      email: joanne42moore@gmail.com

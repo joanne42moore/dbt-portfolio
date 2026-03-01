@@ -38,4 +38,4 @@ select
     avg_orders_per_customer,
     max_orders_for_a_customer
 from channel_stats
-order by avg_ltv_per_customer desc;
+order by avg_ltv_per_customer desc
