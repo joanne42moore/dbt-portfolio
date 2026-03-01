@@ -25,7 +25,7 @@ models:
           - not_null
           - relationships:
               arguments:
-                field: distribution_center_id
+                field: product_distribution_center_id
                 to: ref('stg_thelook__distribution_centers')
       
       - name: cost

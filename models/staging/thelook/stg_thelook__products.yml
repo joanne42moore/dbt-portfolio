@@ -36,6 +36,10 @@ models:
       
       - name: cost
         description: "Cost to acquire/produce the product"
+        tests:
+          - not_null
       
       - name: retail_price
         description: "Standard retail price of the product"
+        tests:
+          - not_null

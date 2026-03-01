@@ -21,6 +21,8 @@ models:
 
       - name: created_at
         description: "Timestamp when order was created"
+        tests:
+          - not_null
 
       - name: returned_at
         description: "Timestamp when order was returned (null if not returned)"
@@ -32,7 +34,7 @@ models:
         description: "Timestamp when order was delivered (null if not yet delivered)"
 
       - name: status
-        description: "Current status of the order (e.g., Pending, Shipped, Complete, Cancelled, Returned)"
+        description: "Order status. Values: Cancelled, Complete, Processing, Returned, Shipped"
 
       - name: num_of_item
         description: "Number of items in the order"

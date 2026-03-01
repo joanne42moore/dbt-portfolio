@@ -28,11 +28,31 @@ models:
       - name: state
         description: "US state (or equivalent region)"
 
+      - name: street_address
+        description: "User's street address"
+
+      - name: postal_code
+        description: "User's postal or ZIP code"
+
+      - name: city
+        description: "User's city"
+
       - name: country
         description: "User's country"
 
-      - name: created_at
-        description: "Timestamp when user account was created"
-        
+      - name: latitude
+        description: "Latitude of user location"
+
+      - name: longitude
+        description: "Longitude of user location"
+
       - name: geography_point
         description: "User location as a GEOGRAPHY point (derived from latitude/longitude)"
+
+      - name: traffic_source
+        description: "Acquisition channel (e.g., organic, paid search, email)"
+
+      - name: created_at
+        description: "Timestamp when user account was created"
+        tests:
+          - not_null

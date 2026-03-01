@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: stg_thelook__events
-    description: "Staging table for TheLook user behavior events (page views, cart adds, purchases, etc.). One row per event."
+    description: "Staging table for TheLook user behavior events (product views, cart, purchase, etc.). One row per event."
     columns:
       - name: event_id
         description: "Primary key for events"
@@ -24,9 +24,11 @@ models:
       
       - name: session_id
         description: "Session identifier grouping related events"
+        tests:
+          - not_null
       
       - name: event_type
-        description: "Type of event (e.g., page view, add to cart, purchase, cancel)"
+        description: "Event type. Values: product, cart, department, purchase, cancel, home (product = product view)"
       
       - name: uri
         description: "URI/URL of the page where the event occurred"
@@ -51,3 +53,5 @@ models:
       
       - name: created_at
         description: "Timestamp when event occurred"
+        tests:
+          - not_null
