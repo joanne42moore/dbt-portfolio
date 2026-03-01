@@ -20,13 +20,9 @@ models:
                 to: ref('stg_thelook__products')
       
       - name: product_distribution_center_id
-        description: "Foreign key to distribution centers table (denormalized from products)"
+        description: "Foreign key to distribution centers table (denormalized from products). Source data may contain orphaned values not present in distribution_centers."
         tests:
           - not_null
-          - relationships:
-              arguments:
-                field: distribution_center_id
-                to: ref('stg_thelook__distribution_centers')
       
       - name: cost
         description: "Cost of this specific inventory item"

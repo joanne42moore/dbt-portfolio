@@ -47,10 +47,12 @@ models:
                 to: ref('stg_thelook__inventory_items')
       
       - name: status
-        description: "Status of the order item (e.g., Processing, Shipped, Complete, Cancelled, Returned)"
+        description: "Order item status. Values: Cancelled, Complete, Processing, Returned, Shipped"
       
       - name: sale_price
         description: "Sale price of the item"
+        tests:
+          - not_null
       
       - name: created_at
         description: "Timestamp when order item was created"
